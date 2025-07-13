@@ -512,6 +512,9 @@ pub struct Download {
     pub content_for_calculating_task_id: ::core::option::Option<
         ::prost::alloc::string::String,
     >,
+    /// Download file id.
+    #[prost(string, optional, tag = "24")]
+    pub file_id: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Object Storage related information.
 #[derive(serde::Serialize, serde::Deserialize)]
