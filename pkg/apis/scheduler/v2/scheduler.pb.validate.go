@@ -303,6 +303,8 @@ func (m *DownloadPeerBackToSourceStartedRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for ContentLength
+
 	if m.Description != nil {
 
 		if m.GetDescription() != "" {

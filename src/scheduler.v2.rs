@@ -21,6 +21,9 @@ pub struct DownloadPeerBackToSourceStartedRequest {
     /// The description of the back-to-source reason.
     #[prost(string, optional, tag = "1")]
     pub description: ::core::option::Option<::prost::alloc::string::String>,
+    /// Total content length.
+    #[prost(uint64, tag = "2")]
+    pub content_length: u64,
 }
 /// ReschedulePeerRequest represents reschedule request of AnnouncePeerRequest.
 #[derive(serde::Serialize, serde::Deserialize)]

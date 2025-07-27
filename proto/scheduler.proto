@@ -38,6 +38,8 @@ message DownloadPeerStartedRequest {
 message DownloadPeerBackToSourceStartedRequest {
   // The description of the back-to-source reason.
   optional string description = 1;
+  // Total content length.
+  uint64 content_length = 2;
 }
 
 // ReschedulePeerRequest represents reschedule request of AnnouncePeerRequest.
