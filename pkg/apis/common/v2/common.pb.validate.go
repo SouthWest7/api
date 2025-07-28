@@ -2550,10 +2550,6 @@ func (m *Download) validate(all bool) error {
 		// no validation rules for ContentForCalculatingTaskId
 	}
 
-	if m.FileId != nil {
-		// no validation rules for FileId
-	}
-
 	if len(errors) > 0 {
 		return DownloadMultiError(errors)
 	}
