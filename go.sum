@@ -1,3 +1,5 @@
+d7y.io/api/v2 v2.1.50 h1:OAXabQ3uWRiB27F8YK5dw1yKrpze4nbLrurlOCC1r6g=
+d7y.io/api/v2 v2.1.50/go.mod h1:IbhylQWRkqRka+oUl73Fzz331fHFIAwS2m4cMNpFWdk=
 github.com/envoyproxy/protoc-gen-validate v1.2.1 h1:DEo3O99U8j4hBFwbJfrz9VtgcDfUKS7KJ7spH3d86P8=
 github.com/envoyproxy/protoc-gen-validate v1.2.1/go.mod h1:d/C80l/jxXLdfEIhX1W2TmLfsJ31lvEjwamM4DxlWXU=
 github.com/go-logr/logr v1.4.2 h1:6pFjapn8bFcIbiKo3XT4j/BhANplGihG6tvd+8rYgrY=
