@@ -1,9 +1,8 @@
-module github.com/SouthWest7/api/v2
+module d7y.io/api/v2
 
 go 1.23.8
 
 require (
-	d7y.io/api/v2 v2.1.50
 	github.com/envoyproxy/protoc-gen-validate v1.2.1
 	go.uber.org/mock v0.5.2
 	google.golang.org/grpc v1.73.0

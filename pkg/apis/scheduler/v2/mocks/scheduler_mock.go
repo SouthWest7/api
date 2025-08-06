@@ -14,7 +14,7 @@ import (
 	reflect "reflect"
 
 	common "d7y.io/api/v2/pkg/apis/common/v2"
-	scheduler "github.com/SouthWest7/api/v2/pkg/apis/scheduler/v2"
+	scheduler "d7y.io/api/v2/pkg/apis/scheduler/v2"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 	metadata "google.golang.org/grpc/metadata"

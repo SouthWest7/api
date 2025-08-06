@@ -13,8 +13,8 @@ import (
 	context "context"
 	reflect "reflect"
 
+	cdnsystem "d7y.io/api/v2/pkg/apis/cdnsystem/v1"
 	common "d7y.io/api/v2/pkg/apis/common/v1"
-	cdnsystem "github.com/SouthWest7/api/v2/pkg/apis/cdnsystem/v1"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 	metadata "google.golang.org/grpc/metadata"
