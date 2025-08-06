@@ -14,7 +14,7 @@ import (
 	reflect "reflect"
 
 	common "d7y.io/api/v2/pkg/apis/common/v1"
-	dfdaemon "d7y.io/api/v2/pkg/apis/dfdaemon/v1"
+	dfdaemon "github.com/SouthWest7/api/v2/pkg/apis/dfdaemon/v1"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 	metadata "google.golang.org/grpc/metadata"

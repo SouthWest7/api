@@ -226,6 +226,12 @@ message DeleteHostRequest{
   string host_id = 1 [(validate.rules).string.min_len = 1];
 }
 
+// SyncHostRequest represents request of SyncHost.
+message SyncHostRequest {
+  // Host info.
+  common.v2.Host host = 1 [(validate.rules).message.required = true];
+}
+
 // RegisterPersistentCachePeerRequest represents persistent cache peer registered request of AnnouncePersistentCachePeerRequest.
 message RegisterPersistentCachePeerRequest {
   // Persistent represents whether the persistent cache task is persistent.
@@ -418,6 +424,9 @@ service Scheduler {
 
   // DeleteHost releases host in scheduler.
   rpc DeleteHost(DeleteHostRequest)returns(google.protobuf.Empty);
+
+  // SyncHost syncs host info to scheduler.
+  rpc SyncHost(SyncHostRequest)returns(google.protobuf.Empty);
 
   // AnnouncePersistentCachePeer announces persistent cache peer to scheduler.
   rpc AnnouncePersistentCachePeer(stream AnnouncePersistentCachePeerRequest) returns(stream AnnouncePersistentCachePeerResponse);

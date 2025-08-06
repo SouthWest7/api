@@ -40,6 +40,8 @@ type SchedulerClient interface {
 	ListHosts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListHostsResponse, error)
 	// DeleteHost releases host in scheduler.
 	DeleteHost(ctx context.Context, in *DeleteHostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// SyncHost syncs host info to scheduler.
+	SyncHost(ctx context.Context, in *SyncHostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// AnnouncePersistentCachePeer announces persistent cache peer to scheduler.
 	AnnouncePersistentCachePeer(ctx context.Context, opts ...grpc.CallOption) (Scheduler_AnnouncePersistentCachePeerClient, error)
 	// Checks information of persistent cache peer.
@@ -160,6 +162,15 @@ func (c *schedulerClient) DeleteHost(ctx context.Context, in *DeleteHostRequest,
 	return out, nil
 }
 
+func (c *schedulerClient) SyncHost(ctx context.Context, in *SyncHostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/scheduler.v2.Scheduler/SyncHost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *schedulerClient) AnnouncePersistentCachePeer(ctx context.Context, opts ...grpc.CallOption) (Scheduler_AnnouncePersistentCachePeerClient, error) {
 	stream, err := c.cc.NewStream(ctx, &Scheduler_ServiceDesc.Streams[1], "/scheduler.v2.Scheduler/AnnouncePersistentCachePeer", opts...)
 	if err != nil {
@@ -274,6 +285,8 @@ type SchedulerServer interface {
 	ListHosts(context.Context, *emptypb.Empty) (*ListHostsResponse, error)
 	// DeleteHost releases host in scheduler.
 	DeleteHost(context.Context, *DeleteHostRequest) (*emptypb.Empty, error)
+	// SyncHost syncs host info to scheduler.
+	SyncHost(context.Context, *SyncHostRequest) (*emptypb.Empty, error)
 	// AnnouncePersistentCachePeer announces persistent cache peer to scheduler.
 	AnnouncePersistentCachePeer(Scheduler_AnnouncePersistentCachePeerServer) error
 	// Checks information of persistent cache peer.
@@ -319,6 +332,9 @@ func (UnimplementedSchedulerServer) ListHosts(context.Context, *emptypb.Empty) (
 }
 func (UnimplementedSchedulerServer) DeleteHost(context.Context, *DeleteHostRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteHost not implemented")
+}
+func (UnimplementedSchedulerServer) SyncHost(context.Context, *SyncHostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncHost not implemented")
 }
 func (UnimplementedSchedulerServer) AnnouncePersistentCachePeer(Scheduler_AnnouncePersistentCachePeerServer) error {
 	return status.Errorf(codes.Unimplemented, "method AnnouncePersistentCachePeer not implemented")
@@ -504,6 +520,24 @@ func _Scheduler_DeleteHost_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SchedulerServer).DeleteHost(ctx, req.(*DeleteHostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Scheduler_SyncHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncHostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SchedulerServer).SyncHost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/scheduler.v2.Scheduler/SyncHost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SchedulerServer).SyncHost(ctx, req.(*SyncHostRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -694,6 +728,10 @@ var Scheduler_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteHost",
 			Handler:    _Scheduler_DeleteHost_Handler,
+		},
+		{
+			MethodName: "SyncHost",
+			Handler:    _Scheduler_SyncHost_Handler,
 		},
 		{
 			MethodName: "StatPersistentCachePeer",

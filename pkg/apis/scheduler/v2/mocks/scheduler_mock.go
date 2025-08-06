@@ -14,7 +14,7 @@ import (
 	reflect "reflect"
 
 	common "d7y.io/api/v2/pkg/apis/common/v2"
-	scheduler "d7y.io/api/v2/pkg/apis/scheduler/v2"
+	scheduler "github.com/SouthWest7/api/v2/pkg/apis/scheduler/v2"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 	metadata "google.golang.org/grpc/metadata"
@@ -303,6 +303,26 @@ func (mr *MockSchedulerClientMockRecorder) StatTask(ctx, in any, opts ...any) *g
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]any{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StatTask", reflect.TypeOf((*MockSchedulerClient)(nil).StatTask), varargs...)
+}
+
+// SyncHost mocks base method.
+func (m *MockSchedulerClient) SyncHost(ctx context.Context, in *scheduler.SyncHostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	m.ctrl.T.Helper()
+	varargs := []any{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "SyncHost", varargs...)
+	ret0, _ := ret[0].(*emptypb.Empty)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// SyncHost indicates an expected call of SyncHost.
+func (mr *MockSchedulerClientMockRecorder) SyncHost(ctx, in any, opts ...any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]any{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SyncHost", reflect.TypeOf((*MockSchedulerClient)(nil).SyncHost), varargs...)
 }
 
 // UploadPersistentCacheTaskFailed mocks base method.
@@ -856,6 +876,21 @@ func (m *MockSchedulerServer) StatTask(arg0 context.Context, arg1 *scheduler.Sta
 func (mr *MockSchedulerServerMockRecorder) StatTask(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StatTask", reflect.TypeOf((*MockSchedulerServer)(nil).StatTask), arg0, arg1)
+}
+
+// SyncHost mocks base method.
+func (m *MockSchedulerServer) SyncHost(arg0 context.Context, arg1 *scheduler.SyncHostRequest) (*emptypb.Empty, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SyncHost", arg0, arg1)
+	ret0, _ := ret[0].(*emptypb.Empty)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// SyncHost indicates an expected call of SyncHost.
+func (mr *MockSchedulerServerMockRecorder) SyncHost(arg0, arg1 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SyncHost", reflect.TypeOf((*MockSchedulerServer)(nil).SyncHost), arg0, arg1)
 }
 
 // UploadPersistentCacheTaskFailed mocks base method.
